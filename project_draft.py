@@ -11,7 +11,7 @@ file = 'closing_prices.csv'
 ticker = 'xpd'
 
 #%% Functions
-# Load CSV into Dataframe adn do some clean-up
+# Load CSV into Dataframe and do some clean-up
 def load_data(file : str) -> pd.DataFrame:
     # Import csv in DataFrame
     data = pd.read_csv(file)
