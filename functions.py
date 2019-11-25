@@ -7,6 +7,7 @@ from statsmodels.tsa.stattools import acf, pacf
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from STATICS import CHARTS_LOCATION, FILE, LAGS
 from statsmodels.tsa.ar_model import AR
+from statsmodels.tsa.stattools import adfuller
 
 
 #%% Functions to prepare the data:
@@ -45,6 +46,30 @@ def to_log_return(data):    # Converts all data to log-returns in one single dat
     log_returns.dropna(axis='index', how='all', inplace=True)
     return log_returns
 
+#%% Functions to check stationarity
+def ADF_test(ts):
+    # https://machinelearningmastery.com/time-series-data-stationary-python/
+    # lags?
+    # Null hypothesis: Time series has a unit root => not stationary
+    # p-value below threshold <=> rejecting Null hypothesis
+    result = adfuller(ts)
+    adf_statistic = result[0]
+    p_value = result[1]
+    five_pct_critical_value = result[4]['5%']
+    if p_value < 0.05:
+        is_stationary = True
+    else:
+        is_stationary = False
+    return (adf_statistic, p_value, five_pct_critical_value, is_stationary)
+
+# def test_stationarity(data):
+#     tickers = get_tickers(data)
+#     for ticker in tickers:
+#         ts = data[ticker].dropna()
+
+
+
+
 #%% Functions to test autocorrelation in the log_returns of the data
 def is_white_noise( log_rtn, \
                     nlags=LAGS, \
@@ -66,6 +91,7 @@ def generate_multicharts(data, lags=LAGS):
         time_series = data[ticker]
         log_rtn = log_returns[ticker]
         log_rtn.dropna(inplace=True)
+        # TO DO : implement the stationarity test in the title of the multichart
         if is_white_noise(log_rtn):
             figure_name = ticker.upper() + \
                 " is white noise.\nNb lags = " + str(lags)
