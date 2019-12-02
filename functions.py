@@ -151,10 +151,11 @@ def is_fit_for_ARCH(data):
     log_returns = to_log_return(data)
     not_white_noise = []
     for ticker in tickers:
-        log_rtn = log_returns[ticker].dropna()
         at2 = ((log_returns[ticker] - log_returns[ticker].mean()) ** 2).dropna()
-        at2test = (log_returns[ticker].dropna() - log_returns[ticker].dropna().mean()) ** 2
-        if not is_white_noise(log_rtn, nlags=LAGS, thres=0.05):
+        if not is_white_noise(at2, nlags=LAGS, thres=0.05):
             not_white_noise.append(ticker)
-
+    return not_white_noise
 # %%
+
+def ARCH_model():
+    return

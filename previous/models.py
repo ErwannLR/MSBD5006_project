@@ -1,3 +1,4 @@
+'''
 #%% Imports
 from statsmodels.tsa.ar_model import AR
 from STATICS import LAGS
@@ -15,12 +16,12 @@ def AR_model(data, test_for_AR):
         aic = result.aic
         summary[ticker] = [best_order, aic]
     for k in summary.keys():
-    print("\nTicker: {} Best order: {}, AIC = {}".format(k, summary[k][0], summary[k][1]))
+        print("\nTicker: {} Best order: {}, AIC = {}".format(k, summary[k][0], summary[k][1]))
     return
 
-def ARCH_model(data)
 
-# *** WORK IN PROGRESS ***
+
+#*** OLD CODE ** 
 #%% Imports for ARCH modelisation
 #%% ARCH modelisation
 # Note all tests use the 5% significance level for type-I error and use
@@ -112,3 +113,4 @@ if is_white_noise:
 else:
     print("Standardized residuals are not white noise, model is inadequate")
 
+'''
