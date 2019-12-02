@@ -117,13 +117,32 @@ def generate_multicharts(data, lags=LAGS):
         # fig.show()
     return
 
-# %%
-def fit_for_AR(data):
+#%% Tests and returns only return time-series featuring some level of autocorrelation
+def is_fit_for_AR(data):
     tickers = get_tickers(data)
     log_returns = to_log_return(data)
     not_white_noise = []
     for ticker in tickers:
-        log_rtn = log_returns[ticker]
+        log_rtn = log_returns[ticker].dropna()
         if not is_white_noise(log_rtn, nlags=LAGS, thres=0.05):
             not_white_noise.append(ticker)
     return not_white_noise
+
+
+#%% Finds best order (p) for each time series, and fits an AR(p) model. Prints a summary
+def AR_model(data, test_for_AR):
+    tickers = test_for_AR
+    log_returns = to_log_return(data)
+    summary = {}
+    for ticker in tickers:
+        log_rtn = log_returns[ticker].dropna()
+        model = AR(log_rtn)
+        best_order = model.select_order(maxlag=LAGS, ic='aic')
+        result =  model.fit(best_order)
+        aic = result.aic
+        summary[ticker] = [best_order, aic]
+    for k in summary.keys():
+        print("\nTicker: {} Best order: {}, AIC = {}".format(k, summary[k][0], summary[k][1]))
+    return summary
+
+#%% Tests for ARCH effect

@@ -3,57 +3,67 @@ from statsmodels.tsa.ar_model import AR
 from STATICS import LAGS
 # from functions import get_tickers, to_log_return
 
-def AR_model(log_returns):
-    for log_rtn in log_returns:
+def AR_model(data, test_for_AR):
+    tickers = test_for_AR
+    log_returns = to_log_return(data)
+    summary = {}
+    for ticker in tickers:
+        log_rtn = log_returns[ticker].dropna()
         model = AR(log_rtn)
         best_order = model.select_order(maxlag=LAGS, ic='aic')
-        model.fit(best_order)
+        result =  model.fit(best_order)
+        aic = result.aic
+        summary[ticker] = [best_order, aic]
+    for k in summary.keys():
+    print("\nTicker: {} Best order: {}, AIC = {}".format(k, summary[k][0], summary[k][1]))
     return
 
+def ARCH_model(data)
+
 # *** WORK IN PROGRESS ***
-#%% Imports for ACH modelisation
+#%% Imports for ARCH modelisation
 #%% ARCH modelisation
 # Note all tests use the 5% significance level for type-I error and use
 # ten lags in all ACF or ARCH-effect tests.
 lags = 10
 signif_level = 0.05
 #%% Load, process and plot data
-cols = ['date', 'sbux', 'snp']
-df = pd.read_csv(file, names=cols, delim_whitespace=True)
+# cols = ['date', 'sbux', 'snp']
+# df = pd.read_csv(file, names=cols, delim_whitespace=True)
 
-# r = log(R + 1)
-df['sbux_log'] = log(df.sbux + 1)
-df['snp_log'] = log(df.snp + 1)
-df = df[['date', 'sbux_log']]
+# # r = log(R + 1)
+# df['sbux_log'] = log(df.sbux + 1)
+# df['snp_log'] = log(df.snp + 1)
+# df = df[['date', 'sbux_log']]
 
-plt.plot(df.sbux_log)
+# plt.plot(df.sbux_log)
 
-#%% Is there any serial correlation in the log returns of Starbucks stock?
-plot_pacf(df.sbux_log, lags=lags, title="Starbucks log-returns PACF")
-plot_acf(df.sbux_log, lags=lags, title="Starbucks log-returns ACF")
+# #%% Is there any serial correlation in the log returns of Starbucks stock?
+# plot_pacf(df.sbux_log, lags=lags, title="Starbucks log-returns PACF")
+# plot_acf(df.sbux_log, lags=lags, title="Starbucks log-returns ACF")
 
 # %% ACF, q-stat, p-values
 # H0: The data are independently distributed (i.e. the correlations in \ 
 # the population from which the sample is taken are 0, so that any observed correlations in the data result from randomness of the sampling process).
 # Ha: The data are not independently distributed; they exhibit serial correlation.
 # => if p-values all below confidence level (here, 5%), then we reject H0, i.e. this is not white noise
-a = acf(df.sbux_log, nlags=lags, fft=False, qstat=True)
-acf_coeff = a[0]
-q_stat = a[1]
-p_values = a[2]
-print('ACF coeff\n', acf_coeff)
-print('q-stat\n', q_stat)
-print('p-values\n', p_values)
-autocorrel = False
-for p in p_values:
-    if p < signif_level:
-        autocorrel = True
-if autocorrel:
-    print("There IS serial autocorrelation in the log-returns")
-else:
-    print("There is NO serial autocorrelation in the log-returns")
+# a = acf(df.sbux_log, nlags=lags, fft=False, qstat=True)
+# acf_coeff = a[0]
+# q_stat = a[1]
+# p_values = a[2]
+# print('ACF coeff\n', acf_coeff)
+# print('q-stat\n', q_stat)
+# print('p-values\n', p_values)
+# autocorrel = False
+# for p in p_values:
+#     if p < signif_level:
+#         autocorrel = True
+# if autocorrel:
+#     print("There IS serial autocorrelation in the log-returns")
+# else:
+#     print("There is NO serial autocorrelation in the log-returns")
 
-#%% Testing for ARCH effect
+# #%% Testing for ARCH effect
 at2 = (df.sbux_log - mean(df.sbux_log)) ** 2
 plot_acf(at2, lags=lags)
 acf(at2, nlags=lags, fft=False, qstat=True)
