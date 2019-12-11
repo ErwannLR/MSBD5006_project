@@ -8,6 +8,7 @@ from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from STATICS import CHARTS_LOCATION, FILE, LAGS
 from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.stattools import adfuller
+from arch import arch_model
 
 
 #%% Functions to prepare the data:
@@ -88,7 +89,7 @@ def generate_multicharts(data, lags=LAGS):
     log_returns = to_log_return(data)
     for ticker in tickers:
         filename = CHARTS_LOCATION + ticker + ".png"
-        time_series = data[ticker]
+        time_series = data[ticker].dropna()
         log_rtn = log_returns[ticker]
         log_rtn.dropna(inplace=True)
         # TO DO : implement the stationarity test in the title of the multichart
@@ -98,6 +99,11 @@ def generate_multicharts(data, lags=LAGS):
         else:
             figure_name = ticker.upper() + \
                 " is NOT white noise.\nNb lags = " + str(lags)
+        adf = ADF_test(time_series)
+        if adf[3]:
+            figure_name = figure_name + "\nThe time series is stationary.\n ADF stat = " + str(adf[0])
+        else:
+            figure_name =figure_name + "\nThe time series is NOT stationary.\n ADF stat = " + str(adf[0])
         print("Plotting", ticker)
         figsize = (10, 10)
         fig = plt.figure(figsize=figsize)
@@ -145,7 +151,7 @@ def AR_model(data, test_for_AR):
         print("\nTicker: {} Best order: {}, AIC = {}".format(k, summary[k][0], summary[k][1]))
     return summary
 
-#%% Tests for ARCH effect
+#%% Tests for ARCH effect (serial autocorrelation of the volatility) in the log-returns
 def is_fit_for_ARCH(data):
     tickers = get_tickers(data)
     log_returns = to_log_return(data)
@@ -157,5 +163,22 @@ def is_fit_for_ARCH(data):
     return not_white_noise
 # %%
 
-def ARCH_model():
+def volatility_model(data, ticker, vol, p, q):
+    log_returns = to_log_return(data)
+    # tickers = test_for_ARCH
+    log_rtn = log_returns[ticker].dropna()
+    am = arch_model(log_rtn, vol=vol, p=p, q=q, dist='Normal')
+    res = am.fit()
+    print(res.summary())
+    return res.aic
+
+def arch_fitting(data, ticker):
+    results_table = []
+    for vol in ['arch', 'garch', 'egarch']:
+        for p in range(1, 3):
+            for q in range(3):
+                aic = volatility_model(data, ticker, vol, p, q)
+                results_table.append([ticker, vol, (p, q), aic])
+    print(results_table)
     return
+# %%
