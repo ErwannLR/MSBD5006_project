@@ -9,6 +9,7 @@ from STATICS import CHARTS_LOCATION, FILE, LAGS
 from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.stattools import adfuller
 from arch import arch_model
+from numpy import inf
 
 
 #%% Functions to prepare the data:
@@ -47,7 +48,7 @@ def to_log_return(data):    # Converts all data to log-returns in one single dat
     log_returns.dropna(axis='index', how='all', inplace=True)
     return log_returns
 
-#%% Functions to check stationarity
+#%% Function to check stationarity
 def ADF_test(ts):
     # https://machinelearningmastery.com/time-series-data-stationary-python/
     # lags?
@@ -62,14 +63,6 @@ def ADF_test(ts):
     else:
         is_stationary = False
     return (adf_statistic, p_value, five_pct_critical_value, is_stationary)
-
-# def test_stationarity(data):
-#     tickers = get_tickers(data)
-#     for ticker in tickers:
-#         ts = data[ticker].dropna()
-
-
-
 
 #%% Functions to test autocorrelation in the log_returns of the data
 def is_white_noise( log_rtn, \
@@ -101,9 +94,13 @@ def generate_multicharts(data, lags=LAGS):
                 " is NOT white noise.\nNb lags = " + str(lags)
         adf = ADF_test(time_series)
         if adf[3]:
-            figure_name = figure_name + "\nThe time series is stationary.\n ADF stat = " + str(adf[0])
+            figure_name = figure_name + \
+                "\nThe time series is stationary. ADF stat = " + \
+                str(round(adf[0], 3))
         else:
-            figure_name =figure_name + "\nThe time series is NOT stationary.\n ADF stat = " + str(adf[0])
+            figure_name = figure_name + \
+                "\nThe time series is NOT stationary. ADF stat = " + \
+                str(round(adf[0], 3))
         print("Plotting", ticker)
         figsize = (10, 10)
         fig = plt.figure(figsize=figsize)
@@ -133,7 +130,6 @@ def is_fit_for_AR(data):
         if not is_white_noise(log_rtn, nlags=LAGS, thres=0.05):
             not_white_noise.append(ticker)
     return not_white_noise
-
 
 #%% Finds best order (p) for each time series, and fits an AR(p) model. Prints a summary
 def AR_model(data, test_for_AR):
@@ -167,6 +163,10 @@ def volatility_model(data, ticker, vol, p, q):
     log_returns = to_log_return(data)
     # tickers = test_for_ARCH
     log_rtn = log_returns[ticker].dropna()
+    if ticker == 'vix':
+        log_rtn = log_rtn * 100 # rescaling as advised by optimizer
+    else:    
+        log_rtn = log_rtn * 1000 # rescaling as advised by optimizer
     am = arch_model(log_rtn, vol=vol, p=p, q=q, dist='Normal')
     res = am.fit()
     print(res.summary())
@@ -174,11 +174,25 @@ def volatility_model(data, ticker, vol, p, q):
 
 def arch_fitting(data, ticker):
     results_table = []
+    lowest_aic = inf
     for vol in ['arch', 'garch', 'egarch']:
         for p in range(1, 3):
             for q in range(3):
                 aic = volatility_model(data, ticker, vol, p, q)
-                results_table.append([ticker, vol, (p, q), aic])
-    print(results_table)
+                if vol == 'arch':
+                    results_table.append([ticker, vol, p, aic])
+                    if aic < lowest_aic:   
+                        best_fit = [ticker, vol, p, aic]
+                        lowest_aic = aic
+                else:
+                    results_table.append([ticker, vol, (p, q), aic])
+                    if aic < lowest_aic:
+                        best_fit = [ticker, vol, (p, q), aic]
+                        lowest_aic = aic
+
+    for result in results_table:
+        print(result)
+    print('Vol model minimizing AIC for', best_fit[0], 'is', best_fit[1:3], 'AIC=', best_fit[3])
+    input('Press <enter> to continue')
     return
 # %%
