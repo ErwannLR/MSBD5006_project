@@ -2,20 +2,25 @@
 from STATICS import FILE
 import functions as f
 
+# Prepare workspace
+f.cleanup()
+
 # Load/prepare data
 data = f.load_data(FILE)
 
 #%% graph multicharts and save to folder
-f.generate_multicharts(data)
+# f.generate_multicharts(data)
 
 #%% find which tickers are not white noise, 
 # # i.e. demonstrate some level of autocorrelation in the log-returns
-test_for_AR = f.is_fit_for_AR(data)
-print("The following tickers are not white noise, \
-    and are fit for AR model:", test_for_AR)
+tickers_with_AR, tickers_without_AR = f.is_fit_for_AR(data)
 
-# perform AR Model fitting for relevant tickers
-f.AR_model(data, test_for_AR)
+# perform AR Model fitting for tickers with autocorrelation in the returns
+f.AR_model(data, tickers_with_AR)
+
+#%% For remaining tickers, we test MA models.
+f.MA_model(data, tickers_without_AR)
+#%% For tickers featuring autocorrelation of the returns, we now test for ARMA and ARIMA
 
 #%% find which tickers feature volatility that is relevant 
 # for ARCH modelling, i.e. where there is serial autocorrelation 
