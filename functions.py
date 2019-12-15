@@ -167,14 +167,13 @@ def AR_model(data, tickers_with_AR):
 def MA_model(data, tickers_without_AR):
     tickers = tickers_without_AR
     log_returns = to_log_return(data)
-    summary = {}
     for ticker in tickers:
         log_rtn = log_returns[ticker].dropna()
         lowest_aic = inf
         for order in range(1,LAGS):
             model = ARMA(log_rtn, order=(0,order))
             result = model.fit()
-            result.summary()
+            # result.summary()
             aic = result.aic
             if aic < lowest_aic:
                 lowest_aic = aic
@@ -183,7 +182,7 @@ def MA_model(data, tickers_without_AR):
         with open('results/MA_models.txt', 'a') as results_file:
             message = "\n\n\n\t\t\t\t\t********** {} **********\n \
                 Best fit for {} obtained with model MA({})\n{}\n" \
-                .format(ticker.upper(), ticker, best_order, summary_best_fit)
+                .format(ticker.upper(), ticker.upper(), best_order, summary_best_fit)
             results_file.write(message)
     return
 
@@ -192,8 +191,41 @@ def ARIMA_model(data, tickers_with_AR):
     tickers = tickers_with_AR
     log_returns = to_log_return(data)
     for ticker in tickers:
+        # AIC_table = {}
+        # largest_pValue = {}
+        # loglikelihood = {}
+        order_error = []
+        lowest_aic = inf
         log_rtn = log_returns[ticker].dropna()
-
+        arma = [(1, 0, 1), (2, 0, 1), (1, 0, 2), (2, 0, 2)]
+        arima = [(1, 1, 1), (2, 1, 1), (1, 1, 2), (2, 1, 2),
+         (1, 1, 0), (2, 1, 0), (0, 1, 1), (0, 1, 2)]
+        orders = arma + arima
+        for order in orders:
+            try:
+                model = ARIMA(log_rtn, order)
+                result = model.fit()
+                aic = result.aic
+                if aic < lowest_aic:
+                    lowest_aic = aic
+                    best_order = order
+                    summary_best_fit = result.summary()
+            except:
+                order_error.append(order)
+        with open('results/ARMA_ARIMA_models.txt', 'a') as results_file:
+            if best_order[1] == 0:
+                best_model = 'ARMA'
+            else:
+                best_model = 'ARIMA'
+            message = "\n\n\n\t********** {} **********\n \
+Lowest AIC for {} obtained with model {}({})\n \
+Please note the following orders returned errors: {}\n \
+{}\n".format(ticker.upper(), \
+ticker.upper(), best_model, best_order, \
+order_error, \
+summary_best_fit)
+            results_file.write(message)
+    return orders
 #%% SARIMA modelling
 def SARIMA_model(data, tickers_with_AR):
     tickers = tickers_with_AR
@@ -276,4 +308,7 @@ def arch_fitting(data, ticker):
         f.write(message)
     # input('Press <enter> to continue')
     return
+# %%
+
+
 # %%

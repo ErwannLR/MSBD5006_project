@@ -3,32 +3,32 @@ The following tickers are relevant for ARCH modeling:
 
 
 					********** XAU **********
-                 Vol model minimizing AIC for xau is ['egarch', (2, 2)] with minimum AIC= 55492.87416232779
-                     Constant Mean - EGARCH Model Results                     
+                 Vol model minimizing AIC for xau is ['garch', (2, 2)] with minimum AIC= 55490.354180536524
+                     Constant Mean - GARCH Model Results                      
 ==============================================================================
 Dep. Variable:                    xau   R-squared:                      -0.000
 Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
-Vol Model:                     EGARCH   Log-Likelihood:               -27740.4
-Distribution:                  Normal   AIC:                           55492.9
-Method:            Maximum Likelihood   BIC:                           55534.6
+Vol Model:                      GARCH   Log-Likelihood:               -27739.2
+Distribution:                  Normal   AIC:                           55490.4
+Method:            Maximum Likelihood   BIC:                           55532.1
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7758
-Time:                        01:19:45   Df Model:                            6
+Time:                        12:11:56   Df Model:                            6
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
 ------------------------------------------------------------------------
-mu             0.0301  8.146e-02      0.370      0.712 [ -0.130,  0.190]
-                              Volatility Model                              
-============================================================================
-                 coef    std err          t      P>|t|      95.0% Conf. Int.
-----------------------------------------------------------------------------
-omega          0.0544  1.729e-02      3.149  1.636e-03 [2.056e-02,8.833e-02]
-alpha[1]       0.2074  5.241e-02      3.957  7.583e-05     [  0.105,  0.310]
-alpha[2]      -0.0469  6.803e-02     -0.689      0.491   [ -0.180,8.647e-02]
-beta[1]        0.4335      0.225      1.924  5.430e-02  [-7.997e-03,  0.875]
-beta[2]        0.5568      0.224      2.490  1.276e-02     [  0.119,  0.995]
-============================================================================
+mu            -0.0236  8.138e-02     -0.290      0.772 [ -0.183,  0.136]
+                               Volatility Model                              
+=============================================================================
+                 coef    std err          t      P>|t|       95.0% Conf. Int.
+-----------------------------------------------------------------------------
+omega          0.3666      0.187      1.960  4.995e-02    [7.210e-05,  0.733]
+alpha[1]       0.0550  1.040e-02      5.286  1.248e-07  [3.458e-02,7.533e-02]
+alpha[2]       0.0261  8.562e-03      3.043  2.341e-03  [9.275e-03,4.284e-02]
+beta[1]        0.0000  2.092e-02      0.000      1.000 [-4.101e-02,4.101e-02]
+beta[2]        0.9190  2.371e-02     38.759      0.000      [  0.873,  0.965]
+=============================================================================
 
 Covariance estimator: robust
 
@@ -44,7 +44,7 @@ Distribution:                  Normal   AIC:                           64184.3
 Method:            Maximum Likelihood   BIC:                           64226.1
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7758
-Time:                        01:19:51   Df Model:                            6
+Time:                        12:12:02   Df Model:                            6
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
@@ -75,7 +75,7 @@ Distribution:                  Normal   AIC:                           58040.0
 Method:            Maximum Likelihood   BIC:                           58074.1
                                         No. Observations:                 6765
 Date:                Sun, Dec 15 2019   Df Residuals:                     6760
-Time:                        01:19:56   Df Model:                            5
+Time:                        12:12:05   Df Model:                            5
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
@@ -95,7 +95,7 @@ Covariance estimator: robust
 
 
 					********** XPT **********
-                 Vol model minimizing AIC for xpt is ['garch', (2, 2)] with minimum AIC= 60020.39107052155
+                 Vol model minimizing AIC for xpt is ['garch', (2, 2)] with minimum AIC= 60020.39107052798
                      Constant Mean - GARCH Model Results                      
 ==============================================================================
 Dep. Variable:                    xpt   R-squared:                      -0.000
@@ -105,28 +105,28 @@ Distribution:                  Normal   AIC:                           60020.4
 Method:            Maximum Likelihood   BIC:                           60062.1
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7758
-Time:                        01:20:01   Df Model:                            6
+Time:                        12:12:08   Df Model:                            6
                                 Mean Model                               
 =========================================================================
                   coef    std err          t      P>|t|  95.0% Conf. Int.
 -------------------------------------------------------------------------
-mu         -1.7846e-05      0.118 -1.507e-04      1.000 [ -0.232,  0.232]
+mu         -2.2464e-05      0.118 -1.898e-04      1.000 [ -0.232,  0.232]
                                Volatility Model                              
 =============================================================================
                  coef    std err          t      P>|t|       95.0% Conf. Int.
 -----------------------------------------------------------------------------
-omega          2.9222      1.068      2.736  6.219e-03      [  0.829,  5.016]
+omega          2.9222      1.068      2.736  6.218e-03      [  0.829,  5.015]
 alpha[1]       0.0639  1.287e-02      4.969  6.730e-07  [3.871e-02,8.914e-02]
 alpha[2]       0.0209  1.388e-02      1.505      0.132 [-6.312e-03,4.810e-02]
-beta[1]        0.1673  6.251e-02      2.677  7.437e-03    [4.480e-02,  0.290]
-beta[2]        0.7297  5.999e-02     12.164  4.835e-34      [  0.612,  0.847]
+beta[1]        0.1673  6.251e-02      2.677  7.435e-03    [4.480e-02,  0.290]
+beta[2]        0.7297  5.999e-02     12.164  4.838e-34      [  0.612,  0.847]
 =============================================================================
 
 Covariance estimator: robust
 
 
 					********** USSA1 **********
-                 Vol model minimizing AIC for ussa1 is ['egarch', (2, 1)] with minimum AIC= 49686.753761270644
+                 Vol model minimizing AIC for ussa1 is ['egarch', (2, 1)] with minimum AIC= 49686.75376105949
                      Constant Mean - EGARCH Model Results                     
 ==============================================================================
 Dep. Variable:                  ussa1   R-squared:                      -0.001
@@ -136,27 +136,27 @@ Distribution:                  Normal   AIC:                           49686.8
 Method:            Maximum Likelihood   BIC:                           49720.2
                                         No. Observations:                 5921
 Date:                Sun, Dec 15 2019   Df Residuals:                     5916
-Time:                        01:20:08   Df Model:                            5
+Time:                        12:12:13   Df Model:                            5
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
 ------------------------------------------------------------------------
-mu             0.4660      0.145      3.207  1.340e-03 [  0.181,  0.751]
+mu             0.4661      0.145      3.208  1.339e-03 [  0.181,  0.751]
                               Volatility Model                              
 ============================================================================
                  coef    std err          t      P>|t|      95.0% Conf. Int.
 ----------------------------------------------------------------------------
-omega          0.0271  7.359e-03      3.678  2.348e-04 [1.265e-02,4.149e-02]
-alpha[1]       0.3149  4.465e-02      7.053  1.751e-12     [  0.227,  0.402]
-alpha[2]      -0.1932  4.407e-02     -4.383  1.172e-05     [ -0.280, -0.107]
-beta[1]        0.9968  1.205e-03    827.522      0.000     [  0.994,  0.999]
+omega          0.0271  7.359e-03      3.678  2.348e-04 [1.264e-02,4.149e-02]
+alpha[1]       0.3149  4.465e-02      7.053  1.752e-12     [  0.227,  0.402]
+alpha[2]      -0.1932  4.407e-02     -4.383  1.173e-05     [ -0.280, -0.107]
+beta[1]        0.9968  1.205e-03    827.518      0.000     [  0.994,  0.999]
 ============================================================================
 
 Covariance estimator: robust
 
 
 					********** USYC2Y10 **********
-                 Vol model minimizing AIC for usyc2y10 is ['egarch', (2, 1)] with minimum AIC= 74181.73798078726
+                 Vol model minimizing AIC for usyc2y10 is ['egarch', (2, 1)] with minimum AIC= 74181.73798078498
                      Constant Mean - EGARCH Model Results                     
 ==============================================================================
 Dep. Variable:               usyc2y10   R-squared:                      -0.000
@@ -166,18 +166,18 @@ Distribution:                  Normal   AIC:                           74181.7
 Method:            Maximum Likelihood   BIC:                           74216.5
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7759
-Time:                        01:20:16   Df Model:                            5
+Time:                        12:12:18   Df Model:                            5
                                  Mean Model                                
 ===========================================================================
                  coef    std err          t      P>|t|     95.0% Conf. Int.
 ---------------------------------------------------------------------------
-mu            -0.4931      0.211     -2.334  1.961e-02 [ -0.907,-7.896e-02]
+mu            -0.4931      0.211     -2.334  1.962e-02 [ -0.907,-7.895e-02]
                               Volatility Model                              
 ============================================================================
                  coef    std err          t      P>|t|      95.0% Conf. Int.
 ----------------------------------------------------------------------------
 omega          0.0191  7.603e-03      2.513  1.196e-02 [4.207e-03,3.401e-02]
-alpha[1]       0.2771  3.512e-02      7.889  3.036e-15     [  0.208,  0.346]
+alpha[1]       0.2771  3.512e-02      7.889  3.037e-15     [  0.208,  0.346]
 alpha[2]      -0.1265  3.565e-02     -3.549  3.863e-04  [ -0.196,-5.666e-02]
 beta[1]        0.9983  1.209e-03    825.565      0.000     [  0.996,  1.001]
 ============================================================================
@@ -196,7 +196,7 @@ Distribution:                  Normal   AIC:                           48382.0
 Method:            Maximum Likelihood   BIC:                           48423.7
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7758
-Time:                        01:20:20   Df Model:                            6
+Time:                        12:12:20   Df Model:                            6
                                  Mean Model                                
 ===========================================================================
                  coef    std err          t      P>|t|     95.0% Conf. Int.
@@ -227,7 +227,7 @@ Distribution:                  Normal   AIC:                           49194.5
 Method:            Maximum Likelihood   BIC:                           49222.3
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7760
-Time:                        01:20:24   Df Model:                            4
+Time:                        12:12:23   Df Model:                            4
                                  Mean Model                                
 ===========================================================================
                  coef    std err          t      P>|t|     95.0% Conf. Int.
@@ -256,7 +256,7 @@ Distribution:                  Normal   AIC:                           50641.6
 Method:            Maximum Likelihood   BIC:                           50669.4
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7760
-Time:                        01:20:30   Df Model:                            4
+Time:                        12:12:27   Df Model:                            4
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
@@ -275,7 +275,7 @@ Covariance estimator: robust
 
 
 					********** INDU **********
-                 Vol model minimizing AIC for indu is ['garch', (2, 2)] with minimum AIC= 55521.42158517953
+                 Vol model minimizing AIC for indu is ['garch', (2, 2)] with minimum AIC= 55521.42158518772
                      Constant Mean - GARCH Model Results                      
 ==============================================================================
 Dep. Variable:                   indu   R-squared:                      -0.001
@@ -285,7 +285,7 @@ Distribution:                  Normal   AIC:                           55521.4
 Method:            Maximum Likelihood   BIC:                           55563.2
                                         No. Observations:                 7764
 Date:                Sun, Dec 15 2019   Df Residuals:                     7758
-Time:                        01:20:37   Df Model:                            6
+Time:                        12:12:31   Df Model:                            6
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
@@ -295,11 +295,11 @@ mu             0.5659  8.674e-02      6.525  6.817e-11 [  0.396,  0.736]
 ============================================================================
                  coef    std err          t      P>|t|      95.0% Conf. Int.
 ----------------------------------------------------------------------------
-omega          2.8609      0.598      4.784  1.715e-06     [  1.689,  4.033]
-alpha[1]       0.0690  1.371e-02      5.034  4.808e-07 [4.213e-02,9.586e-02]
+omega          2.8609      0.598      4.784  1.714e-06     [  1.689,  4.033]
+alpha[1]       0.0690  1.371e-02      5.034  4.805e-07 [4.213e-02,9.586e-02]
 alpha[2]       0.1023  1.418e-02      7.210  5.591e-13   [7.447e-02,  0.130]
 beta[1]        0.0361      0.127      0.284      0.776     [ -0.213,  0.285]
-beta[2]        0.7655      0.123      6.240  4.375e-10     [  0.525,  1.006]
+beta[2]        0.7655      0.123      6.240  4.369e-10     [  0.525,  1.006]
 ============================================================================
 
 Covariance estimator: robust
@@ -316,7 +316,7 @@ Distribution:                  Normal   AIC:                           50078.2
 Method:            Maximum Likelihood   BIC:                           50106.0
                                         No. Observations:                 7763
 Date:                Sun, Dec 15 2019   Df Residuals:                     7759
-Time:                        01:20:41   Df Model:                            4
+Time:                        12:12:34   Df Model:                            4
                                Mean Model                               
 ========================================================================
                  coef    std err          t      P>|t|  95.0% Conf. Int.
