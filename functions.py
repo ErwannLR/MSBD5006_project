@@ -129,7 +129,7 @@ def generate_multicharts(data, lags=LAGS):
         # fig.show()
     return
 
-#%% Tests and returns only return time-series featuring some level of autocorrelation
+#%% Tests and returns only time-series featuring some level of autocorrelation
 def is_fit_for_AR(data):
     tickers = get_tickers(data)
     log_returns = to_log_return(data)
@@ -163,9 +163,7 @@ def AR_model(data, tickers_with_AR):
             results_file.write(message)
     return summary
 
-#%% For tickers that don't feature and autocorrelation,
-# fitting an MA model.
-
+#%% For tickers that don't feature and autocorrelation, we fit an MA model.
 def MA_model(data, tickers_without_AR):
     tickers = tickers_without_AR
     log_returns = to_log_return(data)
@@ -189,7 +187,33 @@ def MA_model(data, tickers_without_AR):
             results_file.write(message)
     return
 
+#%% ARIMA modelling
+def ARIMA_model(data, tickers_with_AR):
+    tickers = tickers_with_AR
+    log_returns = to_log_return(data)
+    for ticker in tickers:
+        log_rtn = log_returns[ticker].dropna()
 
+#%% SARIMA modelling
+def SARIMA_model(data, tickers_with_AR):
+    tickers = tickers_with_AR
+    log_returns = to_log_return(data)
+    for ticker in tickers:
+        log_rtn = log_returns[ticker].dropna()
+
+#%% ARIMAX modelling
+def ARIMAX_model(data, tickers_with_AR):
+    tickers = tickers_with_AR
+    log_returns = to_log_return(data)
+    for ticker in tickers:
+        endog = log_returns[ticker].dropna()
+        exog = tickers.pop(ticker)
+#%% SARIMAX modelling
+def SARIMAX_model(data, tickers_with_AR):
+    tickers = tickers_with_AR
+    log_returns = to_log_return(data)
+    for ticker in tickers:
+        log_rtn = log_returns[ticker].dropna()
 
 
 
