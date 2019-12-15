@@ -8,4 +8,4 @@ else:
 # Input data file name
 FILE = 'closing_prices.csv'
 # Nb lags to run Autoregression
-LAGS=10
+LAGS=20

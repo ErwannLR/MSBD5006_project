@@ -1,0 +1,334 @@
+The following tickers are relevant for ARCH modeling:
+['xau', 'xag', 'xpd', 'xpt', 'ussa1', 'usyc2y10', 'gbp', 'eur', 'aud', 'indu', 'vix']
+
+
+					********** XAU **********
+                 Vol model minimizing AIC for xau is ['garch', (2, 2)] with minimum AIC= 55490.354180536524
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    xau   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -27739.2
+Distribution:                  Normal   AIC:                           55490.4
+Method:            Maximum Likelihood   BIC:                           55532.1
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7758
+Time:                        13:16:56   Df Model:                            6
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu            -0.0236  8.138e-02     -0.290      0.772 [ -0.183,  0.136]
+                               Volatility Model                              
+=============================================================================
+                 coef    std err          t      P>|t|       95.0% Conf. Int.
+-----------------------------------------------------------------------------
+omega          0.3666      0.187      1.960  4.995e-02    [7.210e-05,  0.733]
+alpha[1]       0.0550  1.040e-02      5.286  1.248e-07  [3.458e-02,7.533e-02]
+alpha[2]       0.0261  8.562e-03      3.043  2.341e-03  [9.275e-03,4.284e-02]
+beta[1]        0.0000  2.092e-02      0.000      1.000 [-4.101e-02,4.101e-02]
+beta[2]        0.9190  2.371e-02     38.759      0.000      [  0.873,  0.965]
+=============================================================================
+
+Covariance estimator: robust
+
+
+					********** XAG **********
+                 Vol model minimizing AIC for xag is ['egarch', (2, 2)] with minimum AIC= 64184.32885685227
+                     Constant Mean - EGARCH Model Results                     
+==============================================================================
+Dep. Variable:                    xag   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                     EGARCH   Log-Likelihood:               -32086.2
+Distribution:                  Normal   AIC:                           64184.3
+Method:            Maximum Likelihood   BIC:                           64226.1
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7758
+Time:                        13:17:01   Df Model:                            6
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.0109      0.160  6.763e-02      0.946 [ -0.304,  0.325]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.0638  1.687e-02      3.782  1.554e-04 [3.074e-02,9.685e-02]
+alpha[1]       0.2032  5.063e-02      4.013  5.993e-05     [  0.104,  0.302]
+alpha[2]      -0.0529  6.377e-02     -0.830      0.407   [ -0.178,7.207e-02]
+beta[1]        0.5421      0.186      2.919  3.514e-03     [  0.178,  0.906]
+beta[2]        0.4484      0.185      2.429  1.516e-02   [8.652e-02,  0.810]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** XPD **********
+                 Vol model minimizing AIC for xpd is ['egarch', (2, 1)] with minimum AIC= 58039.9902552774
+                     Constant Mean - EGARCH Model Results                     
+==============================================================================
+Dep. Variable:                    xpd   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                     EGARCH   Log-Likelihood:               -29015.0
+Distribution:                  Normal   AIC:                           58040.0
+Method:            Maximum Likelihood   BIC:                           58074.1
+                                        No. Observations:                 6765
+Date:                Sun, Dec 15 2019   Df Residuals:                     6760
+Time:                        13:17:05   Df Model:                            5
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.6271      0.204      3.076  2.101e-03 [  0.227,  1.027]
+                             Volatility Model                             
+==========================================================================
+                 coef    std err          t      P>|t|    95.0% Conf. Int.
+--------------------------------------------------------------------------
+omega          0.0764  2.861e-02      2.669  7.611e-03 [2.028e-02,  0.132]
+alpha[1]       0.3428  3.430e-02      9.994  1.617e-23   [  0.276,  0.410]
+alpha[2]      -0.1934  3.654e-02     -5.291  1.214e-07   [ -0.265, -0.122]
+beta[1]        0.9883  4.851e-03    203.736      0.000   [  0.979,  0.998]
+==========================================================================
+
+Covariance estimator: robust
+
+
+					********** XPT **********
+                 Vol model minimizing AIC for xpt is ['garch', (2, 2)] with minimum AIC= 60020.39107052798
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    xpt   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -30004.2
+Distribution:                  Normal   AIC:                           60020.4
+Method:            Maximum Likelihood   BIC:                           60062.1
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7758
+Time:                        13:17:07   Df Model:                            6
+                                Mean Model                               
+=========================================================================
+                  coef    std err          t      P>|t|  95.0% Conf. Int.
+-------------------------------------------------------------------------
+mu         -2.2464e-05      0.118 -1.898e-04      1.000 [ -0.232,  0.232]
+                               Volatility Model                              
+=============================================================================
+                 coef    std err          t      P>|t|       95.0% Conf. Int.
+-----------------------------------------------------------------------------
+omega          2.9222      1.068      2.736  6.218e-03      [  0.829,  5.015]
+alpha[1]       0.0639  1.287e-02      4.969  6.730e-07  [3.871e-02,8.914e-02]
+alpha[2]       0.0209  1.388e-02      1.505      0.132 [-6.312e-03,4.810e-02]
+beta[1]        0.1673  6.251e-02      2.677  7.435e-03    [4.480e-02,  0.290]
+beta[2]        0.7297  5.999e-02     12.164  4.838e-34      [  0.612,  0.847]
+=============================================================================
+
+Covariance estimator: robust
+
+
+					********** USSA1 **********
+                 Vol model minimizing AIC for ussa1 is ['egarch', (2, 1)] with minimum AIC= 49686.75376105949
+                     Constant Mean - EGARCH Model Results                     
+==============================================================================
+Dep. Variable:                  ussa1   R-squared:                      -0.001
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.001
+Vol Model:                     EGARCH   Log-Likelihood:               -24838.4
+Distribution:                  Normal   AIC:                           49686.8
+Method:            Maximum Likelihood   BIC:                           49720.2
+                                        No. Observations:                 5921
+Date:                Sun, Dec 15 2019   Df Residuals:                     5916
+Time:                        13:17:12   Df Model:                            5
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.4661      0.145      3.208  1.339e-03 [  0.181,  0.751]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.0271  7.359e-03      3.678  2.348e-04 [1.264e-02,4.149e-02]
+alpha[1]       0.3149  4.465e-02      7.053  1.752e-12     [  0.227,  0.402]
+alpha[2]      -0.1932  4.407e-02     -4.383  1.173e-05     [ -0.280, -0.107]
+beta[1]        0.9968  1.205e-03    827.518      0.000     [  0.994,  0.999]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** USYC2Y10 **********
+                 Vol model minimizing AIC for usyc2y10 is ['egarch', (2, 1)] with minimum AIC= 74181.73798078498
+                     Constant Mean - EGARCH Model Results                     
+==============================================================================
+Dep. Variable:               usyc2y10   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                     EGARCH   Log-Likelihood:               -37085.9
+Distribution:                  Normal   AIC:                           74181.7
+Method:            Maximum Likelihood   BIC:                           74216.5
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7759
+Time:                        13:17:17   Df Model:                            5
+                                 Mean Model                                
+===========================================================================
+                 coef    std err          t      P>|t|     95.0% Conf. Int.
+---------------------------------------------------------------------------
+mu            -0.4931      0.211     -2.334  1.962e-02 [ -0.907,-7.895e-02]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.0191  7.603e-03      2.513  1.196e-02 [4.207e-03,3.401e-02]
+alpha[1]       0.2771  3.512e-02      7.889  3.037e-15     [  0.208,  0.346]
+alpha[2]      -0.1265  3.565e-02     -3.549  3.863e-04  [ -0.196,-5.666e-02]
+beta[1]        0.9983  1.209e-03    825.565      0.000     [  0.996,  1.001]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** GBP **********
+                 Vol model minimizing AIC for gbp is ['garch', (2, 2)] with minimum AIC= 48382.00102692492
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    gbp   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -24185.0
+Distribution:                  Normal   AIC:                           48382.0
+Method:            Maximum Likelihood   BIC:                           48423.7
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7758
+Time:                        13:17:20   Df Model:                            6
+                                 Mean Model                                
+===========================================================================
+                 coef    std err          t      P>|t|     95.0% Conf. Int.
+---------------------------------------------------------------------------
+mu             0.0406  5.865e-02      0.692      0.489 [-7.436e-02,  0.156]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.5286      0.193      2.740  6.152e-03     [  0.150,  0.907]
+alpha[1]       0.0313  8.044e-03      3.893  9.915e-05 [1.555e-02,4.708e-02]
+alpha[2]       0.0522  1.691e-02      3.086  2.026e-03 [1.905e-02,8.535e-02]
+beta[1]        0.0373  4.208e-02      0.886      0.376  [-4.519e-02,  0.120]
+beta[2]        0.8647  4.620e-02     18.718  3.562e-78     [  0.774,  0.955]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** EUR **********
+                 Vol model minimizing AIC for eur is ['garch', (1, 1)] with minimum AIC= 49194.45852731395
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    eur   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -24593.2
+Distribution:                  Normal   AIC:                           49194.5
+Method:            Maximum Likelihood   BIC:                           49222.3
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7760
+Time:                        13:17:22   Df Model:                            4
+                                 Mean Model                                
+===========================================================================
+                 coef    std err          t      P>|t|     95.0% Conf. Int.
+---------------------------------------------------------------------------
+mu             0.0203  6.029e-02      0.337      0.736 [-9.784e-02,  0.139]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.1295  5.409e-02      2.395  1.663e-02   [2.352e-02,  0.236]
+alpha[1]       0.0310  3.253e-03      9.522  1.691e-21 [2.460e-02,3.735e-02]
+beta[1]        0.9657  3.760e-03    256.874      0.000     [  0.958,  0.973]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** AUD **********
+                 Vol model minimizing AIC for aud is ['garch', (1, 1)] with minimum AIC= 50641.60947283113
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    aud   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -25316.8
+Distribution:                  Normal   AIC:                           50641.6
+Method:            Maximum Likelihood   BIC:                           50669.4
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7760
+Time:                        13:17:26   Df Model:                            4
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.0175  6.682e-02      0.261      0.794 [ -0.113,  0.148]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          0.3917      0.104      3.751  1.762e-04     [  0.187,  0.596]
+alpha[1]       0.0494  6.376e-03      7.749  9.235e-15 [3.692e-02,6.191e-02]
+beta[1]        0.9423  7.371e-03    127.833      0.000     [  0.928,  0.957]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** INDU **********
+                 Vol model minimizing AIC for indu is ['garch', (2, 2)] with minimum AIC= 55521.42158518772
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                   indu   R-squared:                      -0.001
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.001
+Vol Model:                      GARCH   Log-Likelihood:               -27754.7
+Distribution:                  Normal   AIC:                           55521.4
+Method:            Maximum Likelihood   BIC:                           55563.2
+                                        No. Observations:                 7764
+Date:                Sun, Dec 15 2019   Df Residuals:                     7758
+Time:                        13:17:31   Df Model:                            6
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu             0.5659  8.674e-02      6.525  6.817e-11 [  0.396,  0.736]
+                              Volatility Model                              
+============================================================================
+                 coef    std err          t      P>|t|      95.0% Conf. Int.
+----------------------------------------------------------------------------
+omega          2.8609      0.598      4.784  1.714e-06     [  1.689,  4.033]
+alpha[1]       0.0690  1.371e-02      5.034  4.805e-07 [4.213e-02,9.586e-02]
+alpha[2]       0.1023  1.418e-02      7.210  5.591e-13   [7.447e-02,  0.130]
+beta[1]        0.0361      0.127      0.284      0.776     [ -0.213,  0.285]
+beta[2]        0.7655      0.123      6.240  4.369e-10     [  0.525,  1.006]
+============================================================================
+
+Covariance estimator: robust
+
+
+					********** VIX **********
+                 Vol model minimizing AIC for vix is ['garch', (1, 1)] with minimum AIC= 50078.18280308499
+                     Constant Mean - GARCH Model Results                      
+==============================================================================
+Dep. Variable:                    vix   R-squared:                      -0.000
+Mean Model:             Constant Mean   Adj. R-squared:                 -0.000
+Vol Model:                      GARCH   Log-Likelihood:               -25035.1
+Distribution:                  Normal   AIC:                           50078.2
+Method:            Maximum Likelihood   BIC:                           50106.0
+                                        No. Observations:                 7763
+Date:                Sun, Dec 15 2019   Df Residuals:                     7759
+Time:                        13:17:34   Df Model:                            4
+                               Mean Model                               
+========================================================================
+                 coef    std err          t      P>|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+mu            -0.0111  6.465e-02     -0.172      0.863 [ -0.138,  0.116]
+                             Volatility Model                             
+==========================================================================
+                 coef    std err          t      P>|t|    95.0% Conf. Int.
+--------------------------------------------------------------------------
+omega          4.0008      0.982      4.075  4.606e-05   [  2.076,  5.925]
+alpha[1]       0.1144  1.978e-02      5.782  7.368e-09 [7.561e-02,  0.153]
+beta[1]        0.7896  3.765e-02     20.973  1.160e-97   [  0.716,  0.863]
+==========================================================================
+
+Covariance estimator: robust
