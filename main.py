@@ -34,3 +34,4 @@ test_for_ARCH = f.is_fit_for_ARCH(data)
 for ticker in test_for_ARCH:
     f.arch_fitting(data, ticker)
 # %%
+ 
