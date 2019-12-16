@@ -14,7 +14,7 @@ from arch import arch_model
 from numpy import inf
 from numpy import sqrt
 
-pd.plotting.register_matplotlib_converters()
+#pd.plotting.register_matplotlib_converters()
 
 # %% Clear results directory to avoid appending to existing files
 def cleanup():

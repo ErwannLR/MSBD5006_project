@@ -1,0 +1,5 @@
+Ticker: xpd 			Best order: 6 	AIC = -7.811791194763826
+Ticker: usyc2y10 			Best order: 10 	AIC = -5.1326044058205795
+Ticker: aud 			Best order: 7 	AIC = -9.863669955791236
+Ticker: indu 			Best order: 8 	AIC = -9.14188848666215
+Ticker: vix 			Best order: 10 	AIC = -5.507623054257078
