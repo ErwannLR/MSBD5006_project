@@ -270,12 +270,46 @@ def SARIMA_model(data, tickers_with_AR):
 # %% ARIMAX modelling
 def ARIMAX_model(data, tickers_with_AR):
     print("ARIMAX_model() start execute")
-    tickers = tickers_with_AR
-    log_returns = to_log_return(data)
-    for ticker in tickers:
+    summary = {}
+    for ticker in tickers_with_AR:
         print("ARIMAX_model() start execute in ticker: " + ticker)
-        endog = log_returns[ticker].dropna()
-        exog = tickers.pop(ticker)
+        log_returns = to_log_return(data)
+        log_returns[ticker] = log_returns[ticker].shift(1)
+        log_returns.dropna(how='any', inplace=True)
+        endog = log_returns[ticker]
+        exog = log_returns.drop(columns=ticker)
+        order_error = []
+        lowest_aic = inf
+        arma = [(1, 0, 1), (2, 0, 1), (1, 0, 2), (2, 0, 2)]
+        arima = [(1, 1, 1), (2, 1, 1), (1, 1, 2), (2, 1, 2),
+            (1, 1, 0), (2, 1, 0), (0, 1, 1), (0, 1, 2)]
+        orders = arma + arima
+        for order in orders:
+            try:
+                model = ARIMA(endog, order, exog=exog)
+                result = model.fit()
+                aic = result.aic
+                if aic < lowest_aic:
+                    lowest_aic = aic
+                    best_order = order
+                    summary_best_fit = result.summary()
+            except:
+                order_error.append(order)
+        with open('results/ARMAX_ARIMAX_models.txt', 'a') as results_file:
+            if best_order[1] == 0:
+                best_model = 'ARMAX'
+            else:
+                best_model = 'ARIMAX'
+            message = "\n\n\n\t********** {} **********\n \
+Lowest AIC for {} obtained with model {}({})\n \
+Please note the following orders returned errors: {}\n \
+{}\n".format(ticker.upper(), \
+            ticker.upper(), best_model, best_order, \
+            order_error, \
+            summary_best_fit)
+            results_file.write(message)
+        summary[ticker] = [best_order, lowest_aic]
+    return summary
 
 
 # %% SARIMAX modelling
