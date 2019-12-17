@@ -194,7 +194,7 @@ def MA_model(log_returns, tickers_with_AR):
         print("MA_model() start execute in ticker: " + ticker)
         log_rtn = log_returns[ticker].dropna()
         lowest_aic = inf
-        for order in range(1,6):
+        for order in range(1,LAGS):
             print("MA_model() start execute in order: " + str(order))
             model = ARMA(log_rtn, order=(0,order))
             result = model.fit()

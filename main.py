@@ -23,7 +23,7 @@ try:
     # %% Perform AR Model fitting for tickers with autocorrelation in the returns
     summary_AR = f.AR_model(log_returns, tickers_with_AR)
     # %% Perform MA Model fitting for tickers featuring autocorrelation of the returns
-    summary_MA = f.MA_model(log_returns, tickers_with_AR)
+    summary_MA = f.MA_model(log_returns, tickers_without_AR)
     # %% Perform ARMA and ARIMA fitting for tickers featuring autocorrelation of the returns
     summary_ARIMA = f.ARIMA_model(log_returns, tickers_with_AR)
     # %% ARIMAX Modelling
