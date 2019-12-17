@@ -84,15 +84,20 @@ def ADF_test(ts):
 
 # %% Functions to test autocorrelation in the log_returns of the data
 def is_white_noise(log_rtn, \
+                   *ticker, \
                    nlags=LAGS, \
                    thres=0.05) -> bool:
     print("is_white_noise() start execute")
     p_values = acf(log_rtn, nlags, qstat=True)[-1]
+    # print('Largest p-value for', ticker[0].upper(), max(p_values))
     pv_above_threshold = [pv for pv in p_values if pv > thres]
     if pv_above_threshold == []:
         is_white_noise = False
     else:
         is_white_noise = True
+    with open('results/p_values.txt', 'a') as f:
+        message = '\nLargest p-value for ' + str(ticker[0].upper()) + ':\t' + str(max(p_values)) + '\tWhite noise: ' + str(is_white_noise)
+        f.write(message)
     return is_white_noise
 
 
@@ -152,7 +157,7 @@ def is_fit_for_AR(log_returns):
     for ticker in tickers:
         print("is_fit_for_AR() start execute in ticker: " + ticker)
         log_rtn = log_returns[ticker].dropna()
-        if not is_white_noise(log_rtn, nlags=LAGS, thres=0.05):
+        if not is_white_noise(log_rtn, ticker, nlags=LAGS, thres=0.05):
             not_white_noise.append(ticker)
         else:
             white_noise.append(ticker)

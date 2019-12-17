@@ -1,0 +1,14 @@
+
+Largest p-value for XAU:	0.08014088217403292	White noise: True
+Largest p-value for XAG:	0.20560054446596424	White noise: True
+Largest p-value for XPD:	4.887959456555339e-06	White noise: False
+Largest p-value for XPT:	0.05752066675295594	White noise: True
+Largest p-value for USSA1:	0.22058057325931846	White noise: True
+Largest p-value for USYC2Y10:	1.1666975171295743e-264	White noise: False
+Largest p-value for CHF:	0.3677656456666028	White noise: True
+Largest p-value for CNY:	1.0	White noise: True
+Largest p-value for GBP:	0.9696330157824902	White noise: True
+Largest p-value for EUR:	0.8361702383145545	White noise: True
+Largest p-value for AUD:	0.0014160111090354512	White noise: False
+Largest p-value for INDU:	9.247788412321759e-05	White noise: False
+Largest p-value for VIX:	1.1200550605177253e-11	White noise: False
