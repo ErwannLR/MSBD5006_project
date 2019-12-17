@@ -143,10 +143,10 @@ def generate_multicharts(data, lags=LAGS):
 
 
 # %% Tests and returns only time-series featuring some level of autocorrelation
-def is_fit_for_AR(data):
+def is_fit_for_AR(log_returns):
     print("is_fit_for_AR() start execute")
-    tickers = get_tickers(data)
-    log_returns = to_log_return(data)
+    tickers = get_tickers(log_returns)
+    #log_returns = to_log_return(data)
     not_white_noise = []
     white_noise = []
     for ticker in tickers:
@@ -158,14 +158,16 @@ def is_fit_for_AR(data):
             white_noise.append(ticker)
     print("The following tickers are not white noise, \
     and are fit for AR model:", not_white_noise)
+    print("The following tickers are white noise series, \
+    and need to check for ARCH effect:", white_noise)
     return not_white_noise, white_noise
 
 
 # %% Finds best order (p) for each time series, and fits an AR(p) model. Prints a summary
-def AR_model(data, tickers_with_AR):
+def AR_model(log_returns, tickers_with_AR):
     print("AR_model() start execute")
     tickers = tickers_with_AR
-    log_returns = to_log_return(data)
+    #log_returns = to_log_return(data)
     summary = {}
     for ticker in tickers:
         print("AR_model() start execute in ticker: " + ticker)
@@ -174,7 +176,7 @@ def AR_model(data, tickers_with_AR):
         best_order = model.select_order(maxlag=LAGS, ic='aic')
         result = model.fit(best_order)
         aic = result.aic
-        summary[ticker] = [best_order, aic]
+        summary[ticker] = [best_order, aic, 'AR']
     with open('results/AR_models.txt', 'w') as results_file:
         for k in summary.keys():
             message = "Ticker: {} \t\t\tBest order: {} \tAIC = {}\n".format(k, summary[k][0], summary[k][1])
@@ -183,16 +185,16 @@ def AR_model(data, tickers_with_AR):
 
 
 # %% For tickers that don't feature and autocorrelation, we fit an MA model.
-def MA_model(data, tickers_without_AR):
+def MA_model(log_returns, tickers_with_AR):
     print("MA_model() start execute")
-    tickers = tickers_without_AR
-    log_returns = to_log_return(data)
+    tickers = tickers_with_AR
+    #log_returns = to_log_return(data)
     summary = {}
     for ticker in tickers:
         print("MA_model() start execute in ticker: " + ticker)
         log_rtn = log_returns[ticker].dropna()
         lowest_aic = inf
-        for order in range(1,LAGS):
+        for order in range(1,6):
             print("MA_model() start execute in order: " + str(order))
             model = ARMA(log_rtn, order=(0,order))
             result = model.fit()
@@ -202,7 +204,7 @@ def MA_model(data, tickers_without_AR):
                 lowest_aic = aic
                 best_order = order
                 summary_best_fit = result.summary()
-        summary[ticker] = [best_order, lowest_aic]
+        summary[ticker] = [best_order, lowest_aic, 'MA']
         with open('results/MA_models.txt', 'a') as results_file:
             message = "\n\n\n\t\t\t\t\t********** {} **********\n \
                 Best fit for {} obtained with model MA({})\n{}\n" \
@@ -212,10 +214,10 @@ def MA_model(data, tickers_without_AR):
 
 
 # %% ARIMA modelling
-def ARIMA_model(data, tickers_with_AR):
+def ARIMA_model(log_returns, tickers_with_AR):
     print("ARIMA_model() start execute")
     tickers = tickers_with_AR
-    log_returns = to_log_return(data)
+    #log_returns = to_log_return(data)
     summary = {}
     for ticker in tickers:
         print("ARIMA_model() start execute in ticker: " + ticker)
@@ -253,7 +255,7 @@ Please note the following orders returned errors: {}\n \
              order_error, \
              summary_best_fit)
             results_file.write(message)
-        summary[ticker] = [best_order, lowest_aic]
+        summary[ticker] = [best_order, lowest_aic, best_model]
     return summary
 
 
@@ -308,7 +310,7 @@ Please note the following orders returned errors: {}\n \
             order_error, \
             summary_best_fit)
             results_file.write(message)
-        summary[ticker] = [best_order, lowest_aic]
+        summary[ticker] = [best_order, lowest_aic, best_model]
     return summary
 
 
@@ -322,28 +324,48 @@ def SARIMAX_model(data, tickers_with_AR):
         log_rtn = log_returns[ticker].dropna()
 
 
+def linear_model_fit_resid(log_rtn, ticker, linear_model_summary):
+    if linear_model_summary[ticker][2] == 'AR':
+        result = AR(log_rtn).fit(linear_model_summary[ticker][0])
+    elif linear_model_summary[ticker][2] == 'MA':
+        result = ARMA(log_rtn, order=(0, linear_model_summary[ticker][0])).fit()
+    else:
+        result = ARIMA(log_rtn, order=linear_model_summary[ticker][0]).fit()
+    residual = result.resid
+    return residual
+
 # %% Tests for ARCH effect (serial autocorrelation of the volatility) in the log-returns
-def is_fit_for_ARCH(data):
+# signal=True   tickers are white noise data
+# signal=False  tickers are model residual
+def is_fit_for_ARCH(log_returns, tickers, summary, signal):
     print("is_fit_for_ARCH() start execute")
-    tickers = get_tickers(data)
-    log_returns = to_log_return(data)
+    #tickers = get_tickers(data)
+    #tickers = get_tickers(log_returns)
+    #log_returns = to_log_return(data)
     not_white_noise = []
     for ticker in tickers:
         print("is_fit_for_ARCH() start execute in ticker: " + ticker)
         log_rtn = log_returns[ticker].dropna()
-        at2 = ((log_rtn - log_rtn.mean()) ** 2).dropna()
-        if not is_white_noise(at2, nlags=LAGS, thres=0.05):
-            not_white_noise.append(ticker)
-    with open('results/ARCH_models.txt', 'a') as f:
-        message = "The following tickers are relevant for ARCH modeling:\n{}".format(not_white_noise)
-        f.write(message)
+        if signal:      # tickers are white noise data
+            at2 = ((log_rtn - log_rtn.mean()) ** 2).dropna()
+            if not is_white_noise(at2, nlags=LAGS, thres=0.05):
+                not_white_noise.append(ticker)
+        else:                                   # tickers are model residual
+            residual = linear_model_fit_resid(log_rtn, ticker, summary)
+            at2 = ((residual - residual.mean()) ** 2).dropna()
+            if not is_white_noise(at2, nlags=LAGS, thres=0.05):
+                not_white_noise.append(ticker)
+    if signal:
+        print("The following tickers are white noise series, \
+              and are fit for ARCH model:", not_white_noise)
+    else:
+        print("The following tickers' model residual has ARCH effect (not white noise) ,\
+              and are fit for ARCH model:", not_white_noise)
     return not_white_noise
 
-def volatility_model(data, ticker, vol, p, q):
+
+def volatility_model(log_rtn, ticker, vol, p, q):
     print("volatility_model() start execute")
-    log_returns = to_log_return(data)
-    # tickers = test_for_ARCH
-    log_rtn = log_returns[ticker].dropna()
     if ticker == 'vix':
         log_rtn = log_rtn * 100  # rescaling as advised by optimizer
     else:
@@ -354,14 +376,51 @@ def volatility_model(data, ticker, vol, p, q):
     return res
 
 
-def arch_fitting(data, ticker):
+def resid_arch_fitting(log_returns, ticker, summary_model):
     print("arch_fitting() start execute")
+    log_rtn = log_returns[ticker].dropna()
+    residual = linear_model_fit_resid(log_rtn, ticker, summary_model)
     results_table = []
     lowest_aic = inf
     for vol in ['arch', 'garch', 'egarch']:
         for p in range(1, 3):
             for q in range(3):
-                res = volatility_model(data, ticker, vol, p, q)
+                res = volatility_model(residual, ticker, vol, p, q)
+                aic = res.aic
+                summary = res.summary()
+                if vol == 'arch':
+                    results_table.append([ticker, vol, p, aic])
+                    if aic < lowest_aic:
+                        best_fit = [ticker, vol, p, aic]
+                        lowest_aic = aic
+                        best_fit_summary = summary
+                else:
+                    results_table.append([ticker, vol, (p, q), aic])
+                    if aic < lowest_aic:
+                        best_fit = [ticker, vol, (p, q), aic]
+                        lowest_aic = aic
+                        best_fit_summary = summary
+
+    for result in results_table:
+        print(result)
+    message = '\n\n\n\t\t\t\t\t********** {} **********\n \
+                Vol model minimizing AIC for {} is {} with minimum AIC= {}\n{}' \
+        .format(ticker.upper(), best_fit[0], best_fit[1:3], best_fit[3], best_fit_summary)
+    with open('results/'+summary_model[ticker][2]+'_ARCH_models.txt', 'a') as f:
+        f.write(message)
+    # input('Press <enter> to continue')
+    return best_fit
+
+
+def arch_fitting(log_returns, ticker):
+    print("arch_fitting() start execute")
+    log_rtn = log_returns[ticker].dropna()
+    results_table = []
+    lowest_aic = inf
+    for vol in ['arch', 'garch', 'egarch']:
+        for p in range(1, 3):
+            for q in range(3):
+                res = volatility_model(log_rtn, ticker, vol, p, q)
                 aic = res.aic
                 summary = res.summary()
                 if vol == 'arch':
