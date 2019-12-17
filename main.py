@@ -9,7 +9,7 @@ try:
     # Load/prepare data
     data = f.load_data(FILE)
 
-    # Convert data into log-reutrn
+    # Convert data into log-reutrntic
     log_returns = f.to_log_return(data)
 
     # %% graph multicharts and save to folder
