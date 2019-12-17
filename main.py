@@ -4,7 +4,8 @@ import functions as f
 
 try:
     # Prepare workspace
-    f.cleanup()
+    # NB: uncomment only if you have time to re-run the whole code to reproduce results (several hours)
+    # f.cleanup()
 
     # Load/prepare data
     data = f.load_data(FILE)
@@ -28,7 +29,8 @@ try:
     summary_ARIMA = f.ARIMA_model(log_returns, tickers_with_AR)
     # %% ARIMAX Modelling
     summary_ARIMAX = f.ARIMAX_model(data, tickers_with_AR)
-
+    %%  SARIMA Modelling
+    summary_SARIMA = f.SARIMA_model(data, tickers_with_AR)
 
     # %% split data into two parts
     train_size = int(data.shape[0] - 10)

@@ -9,6 +9,7 @@ from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from STATICS import CHARTS_LOCATION, FILE, LAGS
 from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.arima_model import ARMA, ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.stattools import adfuller
 from arch import arch_model
 from numpy import inf
@@ -269,9 +270,47 @@ def SARIMA_model(data, tickers_with_AR):
     print("SARIMA_model() start execute")
     tickers = tickers_with_AR
     log_returns = to_log_return(data)
+    mthly_log_returns = log_returns.resample('M').agg(lambda x: x[-1])
+    summary = {}
     for ticker in tickers:
         print("SARIMA_model() start execute in ticker: " + ticker)
-        log_rtn = log_returns[ticker].dropna()
+        order_error = []
+        lowest_aic = inf
+        log_rtn = mthly_log_returns[ticker].dropna()
+        arma = [(1, 0, 1), (2, 0, 1), (1, 0, 2), (2, 0, 2)]
+        arima = [(1, 1, 1), (2, 1, 1), (1, 1, 2), (2, 1, 2),
+                 (1, 1, 0), (2, 1, 0), (0, 1, 1), (0, 1, 2)]
+        orders = arma + arima
+        seasonal_orders = [(1, 0, 1, 12), (2, 0, 1, 12), (1, 0, 2, 12), (2, 0, 2, 12)]
+        for order in orders:
+            try:
+                for seasonal_order in seasonal_orders:
+                    model = SARIMAX(log_rtn, order=order, seasonal_order=seasonal_order)
+                    result = model.fit()
+                    aic = result.aic
+                    if aic < lowest_aic:
+                        lowest_aic = aic
+                        best_order = order
+                        best_seasonal_order = seasonal_order
+                        summary_best_fit = result.summary()
+                        # with open('results/testing_SARIMA.txt', 'a') as f:
+                        #     mess = '\n' + str(order) + ' ' + str(seasonal_order) + '\n' + str(summary_best_fit) + '\n'
+                        #     f.write(mess)
+            except:
+                order_error.append([order, seasonal_order])
+        with open('results/SARIMA_models.txt', 'a') as results_file:
+            message = "\n\n\n\t********** {} **********\n \
+Lowest AIC for {} obtained with SARIMA({}, {})\n \
+Please note the following orders returned errors: {}\n \
+{}\n".format(ticker.upper(), \
+             ticker.upper(), best_order, best_seasonal_order, \
+             order_error, \
+             summary_best_fit)
+            results_file.write(message)
+        summary[ticker] = [best_order, lowest_aic]
+    with open('results/SARIMA_models.txt', 'a') as results_file:
+        results_file.write(str(summary))
+    return summary
 
 
 # %% ARIMAX modelling
@@ -319,14 +358,15 @@ Please note the following orders returned errors: {}\n \
     return summary
 
 
-# %% SARIMAX modelling
-def SARIMAX_model(data, tickers_with_AR):
-    print("SARIMAX_model() start execute")
-    tickers = tickers_with_AR
-    log_returns = to_log_return(data)
-    for ticker in tickers:
-        print("SARIMAX_model() start execute in ticker: " + ticker)
-        log_rtn = log_returns[ticker].dropna()
+# # %% SARIMAX modelling
+# def SARIMAX_model(data, tickers_with_AR):
+#     print("SARIMAX_model() start execute")
+#     tickers = tickers_with_AR
+#     log_returns = to_log_return(data)
+#     mthly_log_returns = log_returns.resample('M').agg(lambda x: x[-1])
+#     for ticker in tickers:
+#         print("SARIMAX_model() start execute in ticker: " + ticker)
+#         log_rtn = mthly_log_returns[ticker].dropna()
 
 
 def linear_model_fit_resid(log_rtn, ticker, linear_model_summary):

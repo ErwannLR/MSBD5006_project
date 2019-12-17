@@ -1,0 +1,165 @@
+
+
+
+	********** XPD **********
+ Lowest AIC for XPD obtained with SARIMA((1, 0, 1), (1, 0, 1, 12))
+ Please note the following orders returned errors: []
+                                  Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                                xpd   No. Observations:                  312
+Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                 790.608
+Date:                            Tue, 17 Dec 2019   AIC                          -1571.216
+Time:                                    21:58:21   BIC                          -1552.501
+Sample:                                11-30-1993   HQIC                         -1563.736
+                                     - 10-31-2019                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1          0.1725      1.299      0.133      0.894      -2.373       2.718
+ma.L1         -0.2182      1.291     -0.169      0.866      -2.749       2.312
+ar.S.L12      -0.0053      4.868     -0.001      0.999      -9.546       9.535
+ma.S.L12       0.0177      4.872      0.004      0.997      -9.532       9.567
+sigma2         0.0004   1.52e-05     24.161      0.000       0.000       0.000
+===================================================================================
+Ljung-Box (Q):                       56.71   Jarque-Bera (JB):               681.53
+Prob(Q):                              0.04   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.42   Skew:                            -1.10
+Prob(H) (two-sided):                  0.00   Kurtosis:                         9.90
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+
+
+	********** USYC2Y10 **********
+ Lowest AIC for USYC2Y10 obtained with SARIMA((2, 1, 2), (1, 0, 1, 12))
+ Please note the following orders returned errors: []
+                                  Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                           usyc2y10   No. Observations:                  358
+Model:             SARIMAX(2, 1, 2)x(1, 0, 1, 12)   Log Likelihood                 521.676
+Date:                            Tue, 17 Dec 2019   AIC                          -1029.353
+Time:                                    22:00:47   BIC                          -1002.209
+Sample:                                01-31-1990   HQIC                         -1018.556
+                                     - 10-31-2019                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1          0.2566      0.086      2.984      0.003       0.088       0.425
+ar.L2         -0.2816      0.029     -9.831      0.000      -0.338      -0.225
+ma.L1         -1.2173      0.087    -13.934      0.000      -1.389      -1.046
+ma.L2          0.3072      0.086      3.582      0.000       0.139       0.475
+ar.S.L12      -0.2041      0.205     -0.994      0.320      -0.607       0.198
+ma.S.L12      -0.0014      0.219     -0.007      0.995      -0.430       0.427
+sigma2         0.0031      0.000     28.562      0.000       0.003       0.003
+===================================================================================
+Ljung-Box (Q):                       60.43   Jarque-Bera (JB):              5313.31
+Prob(Q):                              0.02   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.10   Skew:                            -1.52
+Prob(H) (two-sided):                  0.00   Kurtosis:                        21.65
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+
+
+
+	********** AUD **********
+ Lowest AIC for AUD obtained with SARIMA((1, 0, 1), (1, 0, 1, 12))
+ Please note the following orders returned errors: []
+                                  Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                                aud   No. Observations:                  358
+Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                1289.258
+Date:                            Tue, 17 Dec 2019   AIC                          -2568.517
+Time:                                    22:01:19   BIC                          -2549.114
+Sample:                                01-31-1990   HQIC                         -2560.800
+                                     - 10-31-2019                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1      -4.672e-08      0.021  -2.21e-06      1.000      -0.042       0.042
+ma.L1      -4.691e-08      0.021  -2.21e-06      1.000      -0.042       0.042
+ar.S.L12      -0.0105     20.128     -0.001      1.000     -39.461      39.440
+ma.S.L12       0.0130     20.123      0.001      0.999     -39.427      39.453
+sigma2      4.356e-05   2.37e-06     18.374      0.000    3.89e-05    4.82e-05
+===================================================================================
+Ljung-Box (Q):                       37.93   Jarque-Bera (JB):                59.26
+Prob(Q):                              0.56   Prob(JB):                         0.00
+Heteroskedasticity (H):               1.10   Skew:                             0.05
+Prob(H) (two-sided):                  0.61   Kurtosis:                         4.99
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+[2] Covariance matrix is singular or near-singular, with condition number 6.05e+18. Standard errors may be unstable.
+
+
+
+	********** INDU **********
+ Lowest AIC for INDU obtained with SARIMA((1, 0, 1), (1, 0, 1, 12))
+ Please note the following orders returned errors: [[(2, 1, 1), (2, 0, 2, 12)]]
+                                  Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                               indu   No. Observations:                  358
+Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                1159.682
+Date:                            Tue, 17 Dec 2019   AIC                          -2309.363
+Time:                                    22:02:31   BIC                          -2289.960
+Sample:                                01-31-1990   HQIC                         -2301.647
+                                     - 10-31-2019                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1       6.413e-07      0.016   3.94e-05      1.000      -0.032       0.032
+ma.L1       6.406e-07      0.016   3.93e-05      1.000      -0.032       0.032
+ar.S.L12      -0.0979      0.893     -0.110      0.913      -1.849       1.653
+ma.S.L12       0.1570      0.883      0.178      0.859      -1.573       1.887
+sigma2      8.987e-05   3.11e-06     28.872      0.000    8.38e-05     9.6e-05
+===================================================================================
+Ljung-Box (Q):                       38.76   Jarque-Bera (JB):               988.70
+Prob(Q):                              0.53   Prob(JB):                         0.00
+Heteroskedasticity (H):               0.80   Skew:                            -0.46
+Prob(H) (two-sided):                  0.23   Kurtosis:                        11.09
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+[2] Covariance matrix is singular or near-singular, with condition number 1.03e+17. Standard errors may be unstable.
+
+
+
+	********** VIX **********
+ Lowest AIC for VIX obtained with SARIMA((1, 0, 1), (1, 0, 1, 12))
+ Please note the following orders returned errors: []
+                                  Statespace Model Results                                 
+==========================================================================================
+Dep. Variable:                                vix   No. Observations:                  358
+Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                 508.098
+Date:                            Tue, 17 Dec 2019   AIC                          -1006.197
+Time:                                    22:03:39   BIC                           -986.794
+Sample:                                01-31-1990   HQIC                          -998.480
+                                     - 10-31-2019                                         
+Covariance Type:                              opg                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -0.2354      5.794     -0.041      0.968     -11.592      11.122
+ma.L1          0.2269      5.804      0.039      0.969     -11.149      11.603
+ar.S.L12       0.9071      0.147      6.189      0.000       0.620       1.194
+ma.S.L12      -0.8734      0.172     -5.072      0.000      -1.211      -0.536
+sigma2         0.0034      0.000     18.944      0.000       0.003       0.004
+===================================================================================
+Ljung-Box (Q):                       44.09   Jarque-Bera (JB):                73.43
+Prob(Q):                              0.30   Prob(JB):                         0.00
+Heteroskedasticity (H):               2.35   Skew:                             0.14
+Prob(H) (two-sided):                  0.00   Kurtosis:                         5.20
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+{'xpd': [(1, 0, 1), -1571.2160954600108], 'usyc2y10': [(2, 1, 2), -1029.3527739088447], 'aud': [(1, 0, 1), -2568.516787669734], 'indu': [(1, 0, 1), -2309.363063857013], 'vix': [(1, 0, 1), -1006.1968568272692]}
