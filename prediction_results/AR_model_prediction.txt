@@ -10,7 +10,7 @@ The prediction for xpd is
 2019-10-03    0.000365
 2019-10-04    0.000409
 Freq: B, dtype: float64
- RMSE:0.01257706192203711
+ RMSE:0.012577061922037109
 The prediction for usyc2y10 is 
  2019-09-23    0.006804
 2019-09-24   -0.002277
@@ -23,7 +23,7 @@ The prediction for usyc2y10 is
 2019-10-03    0.000809
 2019-10-04   -0.002540
 Freq: B, dtype: float64
- RMSE:0.042463126709118115
+ RMSE:0.042463126709118094
 The prediction for aud is 
  2019-09-23    0.000262
 2019-09-24    0.000008

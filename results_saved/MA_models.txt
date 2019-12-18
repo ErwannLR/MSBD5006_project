@@ -8,8 +8,8 @@
 Dep. Variable:                    xau   No. Observations:                 7764
 Model:                     ARMA(0, 8)   Log Likelihood               24894.834
 Method:                       css-mle   S.D. of innovations              0.010
-Date:                Wed, 18 Dec 2019   AIC                         -49769.667
-Time:                        19:52:07   BIC                         -49700.095
+Date:                Sun, 15 Dec 2019   AIC                         -49769.667
+Time:                        12:07:54   BIC                         -49700.095
 Sample:                    01-02-1990   HQIC                        -49745.818
                          - 10-04-2019                                         
 ==============================================================================
@@ -47,8 +47,8 @@ MA.8            1.5922           +0.5942j            1.6995            0.0568
 Dep. Variable:                    xag   No. Observations:                 7764
 Model:                     ARMA(0, 1)   Log Likelihood               20527.450
 Method:                       css-mle   S.D. of innovations              0.017
-Date:                Wed, 18 Dec 2019   AIC                         -41048.899
-Time:                        19:52:16   BIC                         -41028.027
+Date:                Sun, 15 Dec 2019   AIC                         -41048.899
+Time:                        12:08:03   BIC                         -41028.027
 Sample:                    01-02-1990   HQIC                        -41041.744
                          - 10-04-2019                                         
 ==============================================================================
@@ -72,8 +72,8 @@ MA.1           33.0116           +0.0000j           33.0116            0.0000
 Dep. Variable:                    xpt   No. Observations:                 7764
 Model:                     ARMA(0, 2)   Log Likelihood               22823.986
 Method:                       css-mle   S.D. of innovations              0.013
-Date:                Wed, 18 Dec 2019   AIC                         -45639.973
-Time:                        19:52:34   BIC                         -45612.144
+Date:                Sun, 15 Dec 2019   AIC                         -45639.973
+Time:                        12:08:21   BIC                         -45612.144
 Sample:                    01-02-1990   HQIC                        -45630.433
                          - 10-04-2019                                         
 ==============================================================================
@@ -99,8 +99,8 @@ MA.2            6.8479           +0.0000j            6.8479            0.0000
 Dep. Variable:                  ussa1   No. Observations:                 5921
 Model:                     ARMA(0, 6)   Log Likelihood               13761.944
 Method:                       css-mle   S.D. of innovations              0.024
-Date:                Wed, 18 Dec 2019   AIC                         -27507.888
-Time:                        19:52:58   BIC                         -27454.398
+Date:                Sun, 15 Dec 2019   AIC                         -27507.888
+Time:                        12:08:46   BIC                         -27454.398
 Sample:                    01-24-1997   HQIC                        -27489.300
                          - 10-04-2019                                         
 ===============================================================================
@@ -134,8 +134,8 @@ MA.6            1.6474           +0.8232j            1.8416            0.0737
 Dep. Variable:                    chf   No. Observations:                 7764
 Model:                     ARMA(0, 1)   Log Likelihood               27318.854
 Method:                       css-mle   S.D. of innovations              0.007
-Date:                Wed, 18 Dec 2019   AIC                         -54631.709
-Time:                        19:53:10   BIC                         -54610.837
+Date:                Sun, 15 Dec 2019   AIC                         -54631.709
+Time:                        12:08:57   BIC                         -54610.837
 Sample:                    01-02-1990   HQIC                        -54624.554
                          - 10-04-2019                                         
 ==============================================================================
@@ -159,8 +159,8 @@ MA.1           36.5707           +0.0000j           36.5707            0.0000
 Dep. Variable:                    cny   No. Observations:                 7764
 Model:                     ARMA(0, 1)   Log Likelihood               30328.451
 Method:                       css-mle   S.D. of innovations              0.005
-Date:                Wed, 18 Dec 2019   AIC                         -60650.902
-Time:                        19:53:29   BIC                         -60630.030
+Date:                Sun, 15 Dec 2019   AIC                         -60650.902
+Time:                        12:09:17   BIC                         -60630.030
 Sample:                    01-02-1990   HQIC                        -60643.747
                          - 10-04-2019                                         
 ==============================================================================
@@ -184,8 +184,8 @@ MA.1          593.7241           +0.0000j          593.7241            0.0000
 Dep. Variable:                    gbp   No. Observations:                 7764
 Model:                     ARMA(0, 1)   Log Likelihood               28845.924
 Method:                       css-mle   S.D. of innovations              0.006
-Date:                Wed, 18 Dec 2019   AIC                         -57685.848
-Time:                        19:53:50   BIC                         -57664.977
+Date:                Sun, 15 Dec 2019   AIC                         -57685.848
+Time:                        12:09:38   BIC                         -57664.977
 Sample:                    01-02-1990   HQIC                        -57678.694
                          - 10-04-2019                                         
 ==============================================================================
@@ -209,8 +209,8 @@ MA.1          -61.6883           +0.0000j           61.6883            0.5000
 Dep. Variable:                    eur   No. Observations:                 7764
 Model:                     ARMA(0, 5)   Log Likelihood               28561.737
 Method:                       css-mle   S.D. of innovations              0.006
-Date:                Wed, 18 Dec 2019   AIC                         -57109.473
-Time:                        19:54:15   BIC                         -57060.773
+Date:                Sun, 15 Dec 2019   AIC                         -57109.473
+Time:                        12:10:04   BIC                         -57060.773
 Sample:                    01-02-1990   HQIC                        -57092.779
                          - 10-04-2019                                         
 ==============================================================================

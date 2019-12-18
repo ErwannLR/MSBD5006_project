@@ -8,8 +8,8 @@
 ==========================================================================================
 Dep. Variable:                                xpd   No. Observations:                  312
 Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                 790.608
-Date:                            Wed, 18 Dec 2019   AIC                          -1571.216
-Time:                                    20:31:49   BIC                          -1552.501
+Date:                            Tue, 17 Dec 2019   AIC                          -1571.216
+Time:                                    21:58:21   BIC                          -1552.501
 Sample:                                11-30-1993   HQIC                         -1563.736
                                      - 10-31-2019                                         
 Covariance Type:                              opg                                         
@@ -40,8 +40,8 @@ Warnings:
 ==========================================================================================
 Dep. Variable:                           usyc2y10   No. Observations:                  358
 Model:             SARIMAX(2, 1, 2)x(1, 0, 1, 12)   Log Likelihood                 521.676
-Date:                            Wed, 18 Dec 2019   AIC                          -1029.353
-Time:                                    20:34:04   BIC                          -1002.209
+Date:                            Tue, 17 Dec 2019   AIC                          -1029.353
+Time:                                    22:00:47   BIC                          -1002.209
 Sample:                                01-31-1990   HQIC                         -1018.556
                                      - 10-31-2019                                         
 Covariance Type:                              opg                                         
@@ -74,8 +74,8 @@ Warnings:
 ==========================================================================================
 Dep. Variable:                                aud   No. Observations:                  358
 Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                1289.258
-Date:                            Wed, 18 Dec 2019   AIC                          -2568.517
-Time:                                    20:34:34   BIC                          -2549.114
+Date:                            Tue, 17 Dec 2019   AIC                          -2568.517
+Time:                                    22:01:19   BIC                          -2549.114
 Sample:                                01-31-1990   HQIC                         -2560.800
                                      - 10-31-2019                                         
 Covariance Type:                              opg                                         
@@ -107,8 +107,8 @@ Warnings:
 ==========================================================================================
 Dep. Variable:                               indu   No. Observations:                  358
 Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                1159.682
-Date:                            Wed, 18 Dec 2019   AIC                          -2309.363
-Time:                                    20:35:40   BIC                          -2289.960
+Date:                            Tue, 17 Dec 2019   AIC                          -2309.363
+Time:                                    22:02:31   BIC                          -2289.960
 Sample:                                01-31-1990   HQIC                         -2301.647
                                      - 10-31-2019                                         
 Covariance Type:                              opg                                         
@@ -140,8 +140,8 @@ Warnings:
 ==========================================================================================
 Dep. Variable:                                vix   No. Observations:                  358
 Model:             SARIMAX(1, 0, 1)x(1, 0, 1, 12)   Log Likelihood                 508.098
-Date:                            Wed, 18 Dec 2019   AIC                          -1006.197
-Time:                                    20:36:44   BIC                           -986.794
+Date:                            Tue, 17 Dec 2019   AIC                          -1006.197
+Time:                                    22:03:39   BIC                           -986.794
 Sample:                                01-31-1990   HQIC                          -998.480
                                      - 10-31-2019                                         
 Covariance Type:                              opg                                         
